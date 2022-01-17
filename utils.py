@@ -19,7 +19,6 @@ def get_train_paths(train_folder_path):
     file_paths = {'positive': [], 'negative':[], 'truthful': [], 'deceptive':[]}
     for root, dirs, files in os.walk(train_folder_path):
         for file_path in files:
-            # append the file name to the list
             if file_path.endswith(".txt"):
                 full_file_path = os.path.join(root, file_path)
                 if 'positive' in full_file_path:
@@ -33,8 +32,14 @@ def get_train_paths(train_folder_path):
     return file_paths
 
 
-def get_test_paths():
-    pass
+def get_test_paths(test_folder_path):
+    file_paths = []
+    for root, dirs, files in os.walk(test_folder_path):
+        for file_path in files:
+            if file_path.endswith(".txt"):
+                full_file_path = os.path.join(root, file_path)
+                file_paths.append(full_file_path)
+    return file_paths
 
 
 def text_preprocess(raw_text):
@@ -51,13 +56,6 @@ def read_sentence_from_file(file_path):
     file = open(file_path, 'r')
     raw_text = '\n'.join(file.readlines()) # TODO: file.readlines()[0]
     return raw_text
-
-def read_model_from_file():
-    pass
-
-
-def write_model_to_file():
-    pass
 
 
 def write_prediction_to_file():
