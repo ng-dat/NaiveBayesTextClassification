@@ -46,11 +46,11 @@ def main(train_folder_path):
             elif config.smoothing_method == 'laplace':
                 conditional_prob[w][c] = (count_w_in_c + 1) / (total_count + V)
 
-    model = {'prior': prior, 'conditional_prob': conditional_prob}
+    model = {'vocabulary': list(vocabulary), 'prior': prior, 'conditional_prob': conditional_prob}
     data = json.dumps(model, indent=1)
-    with open('./nbmodel.txt', "w") as file:
-        file.write(data)
-        file.close()
+    with open('./nbmodel.txt', 'w') as model_file:
+        model_file.write(data)
+        model_file.close()
 
 if __name__ == '__main__':
     train_folder_path = sys.argv[1]
