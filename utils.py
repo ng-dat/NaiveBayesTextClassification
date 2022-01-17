@@ -1,5 +1,8 @@
 import numpy as np
 import os
+import re
+
+from configs import config
 
 
 def extract_vocabulary(train_paths):
@@ -44,12 +47,18 @@ def get_test_paths(test_folder_path):
 
 def text_preprocess(raw_text):
     # TODO: implement
+    if config.remove_symbol:
+        raw_text = re.sub('[^a-zA-Z0-9]', ' ', raw_text)
+    if config.remove_digits:
+        raw_text = re.sub('[0-9]', ' ', raw_text)
+    if config.make_lower_case:
+        raw_text = raw_text.lower()
     return raw_text
 
 
 def tokenize(sample):
     # TODO: implement
-    return sample.split(' ')
+    return sample.split()
 
 
 def read_sentence_from_file(file_path):

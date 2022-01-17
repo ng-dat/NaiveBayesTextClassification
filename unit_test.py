@@ -2,7 +2,7 @@ import utils
 from utils import extract_vocabulary
 
 
-tests = [3]
+tests = [2]
 # Test 1: utils.get_train_paths
 if 1 in tests:
     train_paths = utils.get_train_paths('./data/op_spam_training_data/unit_test')
