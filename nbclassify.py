@@ -17,9 +17,9 @@ def main(test_folder_path):
     N = len(test_paths)
     predictions = np.zeros((N,2))
 
-    classification_a = ['positive', 'negative']
+    classification_a = ['truthful', 'deceptive']
     score_a = np.zeros((N,2))
-    classification_b = ['truthful', 'deceptive']
+    classification_b = ['positive', 'negative']
     score_b = np.zeros((N,2))
     for c in range(2):
         c_a = classification_a[c]
