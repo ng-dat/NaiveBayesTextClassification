@@ -3,17 +3,16 @@ import os
 
 
 def extract_vocabulary(train_paths):
-    # file_paths = train_paths['positive'] + train_paths['negative']
-    # vocab = set()
-    # for file_path in file_paths:
-    #     sample = read_sentence_from_file(file_path)
-    #     sample = text_preprocess(sample)
-    #     sample = tokenize(sample)
-    #     for word in sample:
-    #         if word not in vocab:
-    #             vocab.add(word)
-    # return vocab
-    pass
+    file_paths = train_paths['positive'] + train_paths['negative']
+    vocab = set()
+    for file_path in file_paths:
+        sample = read_sentence_from_file(file_path)
+        sample = text_preprocess(sample)
+        sample = tokenize(sample)
+        for word in sample:
+            if word not in vocab:
+                vocab.add(word)
+    return vocab
 
 
 def get_train_paths(train_folder_path):
