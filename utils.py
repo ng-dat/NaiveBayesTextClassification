@@ -46,7 +46,7 @@ def get_test_paths(test_folder_path):
 
 
 def text_preprocess(raw_text):
-    # TODO: implement
+    # TODO: implement. Ex: what to replace by '', what to replace by ' '
     if config.remove_symbol:
         raw_text = re.sub('[^a-zA-Z0-9]', ' ', raw_text)
     if config.remove_digits:

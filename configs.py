@@ -4,4 +4,7 @@ class Config():
         self.remove_digits = False
         self.make_lower_case = True
 
+        self.count_method = 'appear' # 'appear', 'sum'
+        self.smoothing_method = 'add_one' # 'none', 'add_one', 'laplace'
+
 config = Config()
