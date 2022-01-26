@@ -44,7 +44,7 @@ def main(test_folder_path):
                 output_file.write(' '.join([classification_a[prediction_a[n]], classification_b[prediction_b[n]], test_paths[n], '\n']))
             output_file.close()
     elif config.classfication_method == 'one-multi':
-        classification = ['positive truthful', 'negative truthful', 'positive deceptive', 'negative deceptive']
+        classification = ['truthful positive', 'truthful negative', 'deceptive positive', 'deceptive negative']
         score = np.zeros((N, 4))
         for c in range(4):
             class_ = classification[c]

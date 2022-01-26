@@ -19,7 +19,7 @@ def main(train_folder_path):
     if config.classfication_method == 'two-binary':
         classes = ['positive', 'negative', 'truthful', 'deceptive']
     elif config.classfication_method == 'one-multi':
-        classes = ['positive truthful', 'negative truthful', 'positive deceptive', 'negative deceptive']
+        classes = ['truthful positive', 'truthful negative', 'deceptive positive', 'deceptive negative']
 
     for w in vocabulary:
         conditional_prob[w] = dict()
@@ -31,8 +31,8 @@ def main(train_folder_path):
     if config.classfication_method == 'two-binary':
         count_doc['all'] = count_doc['positive'] + count_doc['negative']
     elif config.classfication_method == 'one-multi':
-        count_doc['all'] = count_doc['positive truthful'] + count_doc['negative truthful'] \
-                           + count_doc['positive deceptive'] + count_doc['negative deceptive']
+        count_doc['all'] = count_doc['truthful positive'] + count_doc['truthful negative'] \
+                           + count_doc['deceptive positive'] + count_doc['deceptive negative']
 
     for c in classes:
         prior[c] = count_doc[c]/count_doc['all']
