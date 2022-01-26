@@ -11,19 +11,28 @@ def main(train_folder_path):
     train_paths = get_train_paths(train_folder_path)
     vocabulary = extract_vocabulary(train_paths)
 
-    classes = ['positive', 'negative', 'truthful', 'deceptive']
     count_doc = dict()
     prior = dict()
     count_word = dict()
     conditional_prob = dict()
+
+    if config.classfication_method == 'two-binary':
+        classes = ['positive', 'negative', 'truthful', 'deceptive']
+    elif config.classfication_method == 'one-multi':
+        classes = ['positive truthful', 'negative truthful', 'positive deceptive', 'negative deceptive']
+
     for w in vocabulary:
         conditional_prob[w] = dict()
         for c in classes:
             conditional_prob[w][c] = 0
 
     for c in classes:
-        count_doc[c] = len(train_paths[c])
-    count_doc['all'] = count_doc['positive'] + count_doc['negative']
+        count_doc[c] = len(train_paths[c]) # TODO
+    if config.classfication_method == 'two-binary':
+        count_doc['all'] = count_doc['positive'] + count_doc['negative']
+    elif config.classfication_method == 'one-multi':
+        count_doc['all'] = count_doc['positive truthful'] + count_doc['negative truthful'] \
+                           + count_doc['positive deceptive'] + count_doc['negative deceptive']
 
     for c in classes:
         prior[c] = count_doc[c]/count_doc['all']
@@ -46,7 +55,7 @@ def main(train_folder_path):
             elif config.smoothing_method == 'laplace':
                 conditional_prob[w][c] = (count_w_in_c + 1) / (total_count + V)
 
-    model = {'vocabulary': list(vocabulary), 'prior': prior, 'conditional_prob': conditional_prob}
+    model = {'prior': prior, 'conditional_prob': conditional_prob, 'vocabulary': list(vocabulary)}
     data = json.dumps(model, indent=1)
     with open('./nbmodel.txt', 'w') as model_file:
         model_file.write(data)
