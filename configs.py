@@ -2,10 +2,11 @@ class Config():
     def __init__(self):
         self.remove_symbol = True
         self.remove_digits = False
-        self.make_lower_case = True
+        self.make_lower_case = False
 
-        self.classfication_method = 'one-multi' # 'one-multi', 'two-binary'
+        self.classfication_method = 'two-binary' # 'one-multi', 'two-binary'
         self.count_method = 'appear' # 'appear', 'sum'
-        self.smoothing_method = 'add_one' # 'none', 'add_one', 'laplace'
+        self.smoothing_method = 'laplace' # 'none', 'add_one', 'laplace'
+        self.add_one_scale = 1.0
 
 config = Config()

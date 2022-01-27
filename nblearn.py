@@ -51,7 +51,7 @@ def main(train_folder_path):
         for w in vocabulary:
             count_w_in_c = count_word[c][w]
             if config.smoothing_method == 'add_one':
-                conditional_prob[w][c] = (count_w_in_c + 1) / (total_count + 1)
+                conditional_prob[w][c] = (count_w_in_c + 1) / (total_count + 1.0*config.add_one_scale)
             elif config.smoothing_method == 'laplace':
                 conditional_prob[w][c] = (count_w_in_c + 1) / (total_count + V)
 
